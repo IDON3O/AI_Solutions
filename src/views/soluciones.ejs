@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones IA</title>
+</head>
+<body>
+
+    <h1>Soluciones de Inteligencia Artificial</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form action="/buscar" method="GET">
+        <input type="text" name="nombre" placeholder="Buscar IA por nombre" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Listado de Soluciones IA</h2>
+
+    <ul>
+        <% soluciones.forEach(solucion => { %>
+            <li>
+                <strong>Nombre:</strong> <%= solucion.nombre %> <br>
+                <strong>Descripción:</strong> <%= solucion.descripcion %> <br>
+                <strong>Precio:</strong> $<%= solucion.precio %> <br>
+                <hr>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
