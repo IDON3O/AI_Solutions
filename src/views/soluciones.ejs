@@ -1,125 +1,139 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soluciones IA</title>
     <style>
-        /* Colores */
-        :root {
-            --blanco-suave: #F5F5F5;
-            --azul-ceniza: #A9BCD0;
-            --gris-claro: #D1D9E6;
-            --verde-salvia: #8DAA9D;
-            --negro-suave: #333333;
-        }
+      /* Colores */
+      :root {
+        --blanco-suave: #f5f5f5;
+        --azul-ceniza: #a9bcd0;
+        --gris-claro: #d1d9e6;
+        --verde-salvia: #8daa9d;
+        --negro-suave: #333333;
+      }
 
-        /* Estilos Generales */
-        body {
-            background-color: var(--blanco-suave);
-            color: var(--negro-suave);
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            padding: 2rem;
-        }
+      /* Estilos Generales */
+      body {
+        background-color: var(--blanco-suave);
+        color: var(--negro-suave);
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 2rem;
+      }
 
-        h1, h2 {
-            color: var(--negro-suave);
-            text-align: center;
-        }
+      h1,
+      h2 {
+        color: var(--negro-suave);
+        text-align: center;
+      }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
 
-        h2 {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            color: var(--azul-ceniza);
-        }
+      h2 {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        color: var(--azul-ceniza);
+      }
 
-        /* Formulario de búsqueda */
-        form {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
+      /* Formulario de búsqueda */
+      form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
 
-        input[type="text"] {
-            padding: 0.8rem;
-            border: 2px solid var(--gris-claro);
-            border-radius: 5px 0 0 5px;
-            font-size: 1rem;
-            width: 250px;
-        }
+      input[type="text"] {
+        padding: 0.8rem;
+        border: 2px solid var(--gris-claro);
+        border-radius: 5px 0 0 5px;
+        font-size: 1rem;
+        width: 250px;
+      }
 
-        button {
-            padding: 0.8rem 1.2rem;
-            background-color: var(--verde-salvia);
-            color: var(--blanco-suave);
-            border: none;
-            border-radius: 0 5px 5px 0;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+      button {
+        padding: 0.8rem 1.2rem;
+        background-color: var(--verde-salvia);
+        color: var(--blanco-suave);
+        border: none;
+        border-radius: 0 5px 5px 0;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-        button:hover {
-            background-color: var(--azul-ceniza);
-        }
+      button:hover {
+        background-color: var(--azul-ceniza);
+      }
 
-        /* Listado de Soluciones */
-        ul {
-            list-style-type: none;
-            padding: 0;
-            max-width: 600px;
-            width: 100%;
-        }
+      /* Listado de Soluciones */
+      ul {
+        list-style-type: none;
+        padding: 0;
+        max-width: 600px;
+        width: 100%;
+      }
 
-        li {
-            background-color: var(--gris-claro);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-        }
+      li {
+        background-color: var(--gris-claro);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      }
 
-        li strong {
-            color: var(--negro-suave);
-        }
+      li strong {
+        color: var(--negro-suave);
+      }
 
-        hr {
-            border: none;
-            border-top: 1px solid var(--azul-ceniza);
-            margin: 1rem 0;
-        }
+      hr {
+        border: none;
+        border-top: 1px solid var(--azul-ceniza);
+        margin: 1rem 0;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <h1>Soluciones de Inteligencia Artificial</h1>
 
     <!-- Formulario de búsqueda -->
     <form action="/buscar" method="GET">
-        <input type="text" name="nombre" placeholder="Buscar IA por nombre" required>
-        <button type="submit">Buscar</button>
+      <input
+        type="text"
+        name="nombre"
+        placeholder="Buscar IA por nombre o descripción"
+      />
+      <select name="categoria">
+        <option value="">Seleccionar Categoria</option>
+        <option value="1">Procesamiento de Lenguaje Natural</option>
+        <option value="2">Visión por Computadora</option>
+        <option value="3">Aprendizaje Automático</option>
+        <option value="4">Robótica</option>
+        <option value="5">Sistemas Expertos</option>
+      </select>
+      <button type="submit">Buscar</button>
     </form>
 
     <h2>Listado de Soluciones IA</h2>
 
     <ul>
-        <% soluciones.forEach(solucion => { %>
-            <li>
-                <strong>Nombre:</strong> <%= solucion.nombre %> <br>
-                <strong>Descripción:</strong> <%= solucion.descripcion %> <br>
-                <strong>Precio:</strong> $<%= solucion.precio %> <br>
-                <hr>
-            </li>
-        <% }); %>
+      <% if (soluciones.length > 0) { %> <% soluciones.forEach(solucion => { %>
+      <li>
+        <strong>Nombre:</strong> <%= solucion.nombre %> <br />
+        <strong>Descripción:</strong> <%= solucion.descripcion %> <br />
+        <strong>Precio:</strong> $<%= solucion.precio %> <br />
+        <hr />
+      </li>
+      <% }); %> <% } else { %>
+      <p>No se encontraron soluciones que coincidan con tu búsqueda.</p>
+      <% } %>
     </ul>
-</body>
+  </body>
 </html>
