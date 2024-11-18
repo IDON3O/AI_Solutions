@@ -1,139 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Soluciones IA</title>
-    <style>
-      /* Colores */
-      :root {
-        --blanco-suave: #f5f5f5;
-        --azul-ceniza: #a9bcd0;
-        --gris-claro: #d1d9e6;
-        --verde-salvia: #8daa9d;
-        --negro-suave: #333333;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluciones IA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;  /* Esto hace que el contenedor principal ocupe todo el alto disponible */
+      margin: 0;     /* Elimina márgenes predeterminados */
+    }
+    
+    body {
+      background-color: #F5F5F5;
+      color: #333333;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;  /* Organiza los elementos en una columna */
+    }
+    header {
+      background-color: #D1D9E6;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      color: #333333;
+      font-size: 2.5rem;
+    }
+    form {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+    .dropdown-toggle {
+      background-color: #8DAA9D;
+      color: #FFFFFF;
+      border: none;
+    }
+    .dropdown-menu {
+      background-color: #F5F5F5;
+    }
+    .dropdown-item {
+      color: #333333;
+    }
+    .dropdown-item:hover {
+      background-color: #A9BCD0;
+      color: #FFFFFF;
+    }
+    .card {
+      border: 1px solid #D1D9E6;
+      border-radius: 10px;
+      background-color: #FFFFFF;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .category-card {
+      background-color: #D1D9E6;
+      color: #333333;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .category-card:hover {
+      background-color: #A9BCD0;
+      color: #FFFFFF;
+    }
+    .card a {
+      text-decoration: none;  /* Esto quita el subrayado en los enlaces dentro de las tarjetas */
+      color: #333333;  /* Color del texto en los enlaces */
+    }
+    .card a:hover {
+      color: #8DAA9D;  /* Cambia el color cuando pasas el ratón por encima */
+    }
+    footer {
+      margin-top: auto;  /* Empuja el pie de página al final */
+      background-color: #D1D9E6;  /* Fondo gris claro para el pie de página */
+      padding: 15px;  /* Espaciado para hacerlo más estético */
+      text-align: center;  /* Centra el texto */
+      color: #333333;  /* Color de texto negro suave */
+      font-size: 14px;  /* Tamaño de fuente del pie de página */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Soluciones IA</h1>
+  </header>
 
-      /* Estilos Generales */
-      body {
-        background-color: var(--blanco-suave);
-        color: var(--negro-suave);
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0;
-        padding: 2rem;
-      }
-
-      h1,
-      h2 {
-        color: var(--negro-suave);
-        text-align: center;
-      }
-
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.8rem;
-        margin-top: 2rem;
-        color: var(--azul-ceniza);
-      }
-
-      /* Formulario de búsqueda */
-      form {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-      }
-
-      input[type="text"] {
-        padding: 0.8rem;
-        border: 2px solid var(--gris-claro);
-        border-radius: 5px 0 0 5px;
-        font-size: 1rem;
-        width: 250px;
-      }
-
-      button {
-        padding: 0.8rem 1.2rem;
-        background-color: var(--verde-salvia);
-        color: var(--blanco-suave);
-        border: none;
-        border-radius: 0 5px 5px 0;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      button:hover {
-        background-color: var(--azul-ceniza);
-      }
-
-      /* Listado de Soluciones */
-      ul {
-        list-style-type: none;
-        padding: 0;
-        max-width: 600px;
-        width: 100%;
-      }
-
-      li {
-        background-color: var(--gris-claro);
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin-bottom: 1.5rem;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-      }
-
-      li strong {
-        color: var(--negro-suave);
-      }
-
-      hr {
-        border: none;
-        border-top: 1px solid var(--azul-ceniza);
-        margin: 1rem 0;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Soluciones de Inteligencia Artificial</h1>
-
-    <!-- Formulario de búsqueda -->
-    <form action="/buscar" method="GET">
-      <input
-        type="text"
-        name="nombre"
-        placeholder="Buscar IA por nombre o descripción"
-      />
-      <select name="categoria">
-        <option value="">Seleccionar Categoria</option>
-        <option value="1">Procesamiento de Lenguaje Natural</option>
-        <option value="2">Visión por Computadora</option>
-        <option value="3">Aprendizaje Automático</option>
-        <option value="4">Robótica</option>
-        <option value="5">Sistemas Expertos</option>
-      </select>
-      <button type="submit">Buscar</button>
+  <div class="container">
+    <form action="/buscar" method="get" class="mb-5">
+      <div class="d-flex align-items-center mb-3">
+        <!-- Campo de búsqueda -->
+        <input type="text" class="form-control me-2" name="nombre" placeholder="Buscar soluciones..." value="<%= typeof nombre !== 'undefined' ? nombre : '' %>">
+        
+        <!-- Menú desplegable de filtros -->
+        <div class="dropdown me-2">
+          <button class="btn dropdown-toggle" style="width: auto;" type="button" id="dropdownFilters" data-bs-toggle="dropdown" aria-expanded="false">
+            Filtros
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownFilters" style="min-width: 300px;"> <!-- Cambié el min-width -->
+            <li>
+              <select name="categoria" class="form-select mt-2">
+                <option value="">Todas las categorías</option>
+                <% categorias.forEach(categoria => { %>
+                  <option value="<%= categoria.id_categoria %>" <%= categoria.id_categoria == categoria ? 'selected' : '' %>>
+                    <%= categoria.nombre %>
+                  </option>
+                <% }); %>
+              </select>
+            </li>
+            <li>
+              <select name="modelo_negocio" class="form-select mt-2">
+                <option value="">Modelos</option>
+                <option value="Free" <%= modelo_negocio === 'Free' ? 'selected' : '' %>>Free</option>
+                <option value="Freemium" <%= modelo_negocio === 'Freemium' ? 'selected' : '' %>>Freemium</option>
+                <option value="Premium" <%= modelo_negocio === 'Premium' ? 'selected' : '' %>>Premium</option>
+              </select>
+            </li>
+            <li>
+              <div class="row mt-2">
+                <div class="col">
+                  <input type="number" name="precio_desde" class="form-control" placeholder="Desde" value="<%= precio_desde %>">
+                </div>
+                <div class="col">
+                  <input type="number" name="precio_hasta" class="form-control" placeholder="Hasta" value="<%= precio_hasta %>">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+    
+        <!-- Botón de búsqueda -->
+        <button type="submit" class="btn" style="background-color: #8DAA9D; color: #FFFFFF;">Buscar</button>
+      </div>
     </form>
+    
 
-    <h2>Listado de Soluciones IA</h2>
+    <% if (soluciones && soluciones.length > 0) { %>
+      <h2 class="mb-4">Resultados de Búsqueda</h2>
+      <div class="row">
+        <% soluciones.forEach(solucion => { %>
+          <div class="col-md-4">
+            <div class="card p-3">
+              <a href="/solucion/<%= solucion.id_solucion %>">
+                <h5 class="card-title"><%= solucion.nombre %></h5>
+                <p><strong>Descripción:</strong> <%= solucion.descripcion %></p>
+                <p><strong>Precio:</strong> $<%= solucion.precio %></p>
+                <p><strong>Modelo:</strong> <%= solucion.modelo_negocio %></p>
+              </a>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else if (categorias && categorias.length > 0) { %>
+      <h2 class="mb-4">Categorías</h2>
+      <div class="category-grid">
+        <% categorias.forEach(categoria => { %>
+          <div class="category-card" onclick="window.location.href='/buscar?categoria=<%= categoria.id_categoria %>'">
+            <h5><%= categoria.nombre %></h5>
+            <!-- <p><%= categoria.descripcion %></p> -->
+          </div>
+        <% }); %>
+      </div>
+    <% } %>
+  </div>
 
-    <ul>
-      <% if (soluciones.length > 0) { %> <% soluciones.forEach(solucion => { %>
-      <li>
-        <strong>Nombre:</strong> <%= solucion.nombre %> <br />
-        <strong>Descripción:</strong> <%= solucion.descripcion %> <br />
-        <strong>Precio:</strong> $<%= solucion.precio %> <br />
-        <hr />
-      </li>
-      <% }); %> <% } else { %>
-      <p>No se encontraron soluciones que coincidan con tu búsqueda.</p>
-      <% } %>
-    </ul>
-  </body>
+  <footer>
+    <p>© 2024 Soluciones IA. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

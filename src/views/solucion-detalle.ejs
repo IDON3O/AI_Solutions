@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= solucion.nombre %> - Soluciones IA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;  /* Esto hace que el contenedor principal ocupe todo el alto disponible */
+      margin: 0;     /* Elimina márgenes predeterminados */
+    }
+
+    body {
+      background-color: #F5F5F5;
+      color: #333333;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;  /* Organiza los elementos en una columna */
+      justify-content: space-between;
+    }
+
+    header {
+      background-color: #D1D9E6;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      color: #333333;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .solucion-info {
+      background-color: #FFFFFF;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .solucion-info h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .solucion-info p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    footer {
+      margin-top: auto;  /* Empuja el pie de página al final */
+      background-color: #D1D9E6;  /* Fondo gris claro para el pie de página */
+      padding: 15px;  /* Espaciado para hacerlo más estético */
+      text-align: center;  /* Centra el texto */
+      color: #333333;  /* Color de texto negro suave */
+      font-size: 14px;  /* Tamaño de fuente del pie de página */
+    }
+
+    a {
+      color: #8DAA9D;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Soluciones IA</h1>
+  </header>
+
+  <div class="container">
+    <div class="solucion-info">
+      <h2><%= solucion.nombre %></h2>
+      
+      <p><strong>Categoría:</strong> <%= solucion.categoria.nombre %></p>
+      <p><strong>Descripción:</strong> <%= solucion.descripcion %></p>
+      <p><strong>Precio:</strong> $<%= solucion.precio %></p>
+      <p><strong>Modelo de negocio:</strong> <%= solucion.modelo_negocio %></p>
+
+      <% if (solucion.pagina_web) { %>
+        <p><strong>Página web:</strong> <a href="<%= solucion.pagina_web %>" target="_blank"><%= solucion.pagina_web %></a></p>
+      <% } %>
+
+      <a href="/soluciones">Volver a la lista de soluciones</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 Soluciones IA. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
