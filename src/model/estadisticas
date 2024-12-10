@@ -1,0 +1,39 @@
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../../db/sequelize');
+const Solucion_ia = require('./solucion_ia');
+
+class Estadisticas extends Model {}
+
+Estadisticas.init({
+    id_estadistica: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    id_solucion: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Solucion_ia,
+            key: 'id_solucion',
+        },
+        allowNull: false,
+    },
+    veces_buscada: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+    veces_recomendada: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    },
+}, {
+    sequelize,
+    modelName: 'estadisticas',
+    tableName: 'estadisticas',
+    timestamps: false,
+});
+
+// Relaciones
+Estadisticas.belongsTo(Solucion_ia, { foreignKey: 'id_solucion', as: 'solucion' });
+
+module.exports = Estadisticas;

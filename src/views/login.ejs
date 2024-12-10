@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <style>
+        /* Colores */
+        :root {
+            --blanco-suave: #F5F5F5;
+            --azul-ceniza: #A9BCD0;
+            --gris-claro: #D1D9E6;
+            --verde-salvia: #8DAA9D;
+            --negro-suave: #333333;
+        }
+
+        /* Estilos Generales */
+        body {
+            background-color: var(--blanco-suave);
+            color: var(--negro-suave);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--negro-suave);
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--azul-ceniza);
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--gris-claro);
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--negro-suave);
+            background-color: var(--blanco-suave);
+        }
+
+        input:focus {
+            border-color: var(--verde-salvia);
+            outline: none;
+            box-shadow: 0 0 5px var(--verde-salvia);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--verde-salvia);
+            color: var(--blanco-suave);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--azul-ceniza);
+        }
+
+        .container {
+            background-color: var(--gris-claro);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* Responsividad */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            label {
+                font-size: 1rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Iniciar sesión</h1>
+        <form action="/login" method="POST">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña" required>
+
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+</body>
+</html>

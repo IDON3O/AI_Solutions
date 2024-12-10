@@ -29,6 +29,39 @@
       color: #333333;
       font-size: 2.5rem;
     }
+    .user-menu {
+      position: relative;
+    }
+    .user-menu button {
+      background-color: #8DAA9D;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 15px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .user-menu .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 5px;
+      background-color: #F5F5F5;
+      border: 1px solid #D1D9E6;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .user-menu .dropdown-item {
+      padding: 10px 20px;
+      color: #333333;
+      text-decoration: none;
+      display: block;
+    }
+    .user-menu .dropdown-item:hover {
+      background-color: #A9BCD0;
+      color: #FFFFFF;
+    }
     form {
       background-color: #FFFFFF;
       padding: 20px;
@@ -51,6 +84,23 @@
       background-color: #A9BCD0;
       color: #FFFFFF;
     }
+    .recommendations-section {
+      margin-top: 30px;
+    }
+    
+    .recommendations-section h2 {
+      color: #8DAA9D; /* Verde salvia */
+    }
+    
+    .recommendations-section .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .recommendations-section .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+    
     .card {
       border: 1px solid #D1D9E6;
       border-radius: 10px;
@@ -110,6 +160,13 @@
   </header>
 
   <div class="container">
+    <div class="user-menu">
+      <button id="userMenuButton">Usuario</button>
+      <div class="dropdown-menu" id="userDropdown">
+        <a href="/historial" class="dropdown-item">Historial de Búsqueda</a>
+        <a href="/logout" class="dropdown-item">Cerrar Sesión</a>
+      </div>
+    </div>
     <form action="/buscar" method="get" class="mb-5">
       <div class="d-flex align-items-center mb-3">
         <!-- Campo de búsqueda -->
@@ -185,12 +242,72 @@
         <% }); %>
       </div>
     <% } %>
+
+    <!-- Recomendaciones para el usuario -->
+<% if (recomendacionesUsuario && recomendacionesUsuario.length > 0) { %>
+  <h2>Recomendaciones para ti</h2>
+  <div class="row">
+    <% recomendacionesUsuario.forEach(rec => { %>
+      <div class="col-md-4">
+        <div class="card">
+          <a href="/solucion/<%= rec.solucion.id_solucion %>">
+            <h5><%= rec.solucion.nombre %></h5>
+            <p><%= rec.solucion.descripcion %></p>
+          </a>
+        </div>
+      </div>
+    <% }); %>
   </div>
+<% } else { %>
+   <!--<p>No hay recomendaciones disponibles para ti en este momento.</p>--> 
+<% } %>
+
+<!-- Recomendaciones generales -->
+<% if (recomendacionesGenerales && recomendacionesGenerales.length > 0) { %>
+  <h2>Las más buscadas</h2>
+  <div class="row">
+    <% recomendacionesGenerales.forEach(gen => { %>
+      <div class="col-md-4">
+        <div class="card">
+          <a href="/solucion/<%= gen.id_solucion %>">
+            <h5><%= gen.nombre %></h5>
+            <p><%= gen.descripcion %></p>
+          </a>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+<% } else { %>
+  <!--<p>No hay soluciones más buscadas por ahora.</p>-->
+<% } %>
+
+<pre>
+  Recomendaciones Usuario:
+  <%= JSON.stringify(recomendacionesUsuario, null, 2) %>
+  
+  Recomendaciones Generales:
+  <%= JSON.stringify(recomendacionesGenerales, null, 2) %>
+</pre>
+
 
   <footer>
     <p>© 2024 Soluciones IA. Todos los derechos reservados.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const userMenuButton = document.getElementById('userMenuButton');
+    const userDropdown = document.getElementById('userDropdown');
+
+    userMenuButton.addEventListener('click', () => {
+      userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!userMenuButton.contains(event.target) && !userDropdown.contains(event.target)) {
+        userDropdown.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
